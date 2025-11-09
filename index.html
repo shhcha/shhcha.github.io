@@ -1,0 +1,69 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+</head>
+
+
+<style>
+  h1{
+    text-align: center;
+    font-family: Mulish;
+  }  
+  p{
+    text-align: center;
+    font-family: Mulish;
+  }
+  .center{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+</style>
+
+<div class = "center">
+<h1>Aidan</h1>
+<a href="//24timezones.com/Houston/time" style="text-decoration: none" class="clock24" id="tz24-1734919314-c1104-eyJob3VydHlwZSI6IjEyIiwic2hvd2RhdGUiOiIwIiwic2hvd3NlY29uZHMiOiIxIiwic2hvd3RpbWV6b25lIjoiMSIsInR5cGUiOiJkIiwibGFuZyI6ImVuIn0=" title="actual time Houston" target="_blank" rel="nofollow">Time in Houston</a>
+<script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
+	
+	<p> <a href="about.html" >about</a> // <a href="blog.html" >blog</a> // <a href="resume.html" >resume</a> // <a href="contact.html" >contact</a></p>
+</div>
+<script>
+function dateToText(date) {
+    var hours = date.getHours()
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+    if (minutes < 10) minutes = '0'+minutes;
+    if  (seconds < 10) seconds = '0'+seconds;
+    if (hours < 10) hours = '0'+hours;
+    return hours + ":" + minutes + ":" + seconds;
+}
+function updateClocks() {
+	for (var i = 0; i < window.arrClocks.length; i++) {
+		var clock = window.arrClocks[i];
+		var offset = window.arrOffsets[i];
+		clock.innerHTML = dateToText(new Date(new Date().getTime()+offset));
+	}
+}
+function startClocks() {
+	clockElements = document.getElementsByClassName('clock');
+	window.arrClocks = []
+	window.arrOffsets = [];
+	var j = 0;
+	for(var i = 0; i < clockElements.length; i++) {
+		el = clockElements[i];
+		timezone = parseInt(el.getAttribute('timezone'));
+		if (!isNaN(timezone)) {
+			var tzDifference = timezone * 60 + (new Date()).getTimezoneOffset();
+			var offset = tzDifference * 60 * 1000;
+			window.arrClocks.push(el);
+			window.arrOffsets.push(offset);
+		}
+	}
+	updateClocks();
+	clockID = setInterval(updateClocks, 1000);
+}
+setTimeout(startClocks, 100);
+</script>
