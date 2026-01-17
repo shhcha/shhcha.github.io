@@ -1,69 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"></head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name</title>
+
+  <!-- Fragment Mono font -->
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --text: #eaeaea;
+      --muted: #9a9a9a;
+      --accent: #ffffff;
+    }
+
+    body.light {
+      --bg: #ffffff;
+      --text: #0f0f0f;
+      --muted: #555555;
+      --accent: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Fragment Mono', monospace;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 400;
+    }
+
+    #time {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.95rem;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-bottom: 1px solid var(--accent);
+    }
+
+    .controls {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      background: none;
+      color: var(--text);
+      border: 1px solid var(--muted);
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      border-color: var(--accent);
+    }
+
+    footer {
+      position: fixed;
+      bottom: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
+<body>
 
-<style>
-  h1{
-    text-align: center;
-    font-family: Unna;
-  }  
-  p{
-    text-align: center;
-    font-family: Unna;
-  }
-  .center{
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  }
-</style>
+  <div class="controls">
+    <button id="toggle-theme">Toggle theme</button>
+  </div>
 
-<div class = "center">
-<h1>Aidan</h1>
-<a href="//24timezones.com/Austin/time" style="text-decoration: none" class="clock24" id="tz24-1734919314-c1104-eyJob3VydHlwZSI6IjEyIiwic2hvd2RhdGUiOiIwIiwic2hvd3NlY29uZHMiOiIxIiwic2hvd3RpbWV6b25lIjoiMSIsInR5cGUiOiJkIiwibGFuZyI6ImVuIn0=" title="actual time Austin" target="_blank" rel="nofollow">Time in Austin</a>
-<script type="text/javascript" src="//w.24timezones.com/l.js" async></script>
-	
-	<p> <a href="about.html" >about</a> // <a href="blog.html" >blog</a> // <a href="resume.html" >resume</a> // <a href="contact.html" >contact</a></p>
-</div>
-<script>
-function dateToText(date) {
-    var hours = date.getHours()
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
-    if (minutes < 10) minutes = '0'+minutes;
-    if  (seconds < 10) seconds = '0'+seconds;
-    if (hours < 10) hours = '0'+hours;
-    return hours + ":" + minutes + ":" + seconds;
-}
-function updateClocks() {
-	for (var i = 0; i < window.arrClocks.length; i++) {
-		var clock = window.arrClocks[i];
-		var offset = window.arrOffsets[i];
-		clock.innerHTML = dateToText(new Date(new Date().getTime()+offset));
-	}
-}
-function startClocks() {
-	clockElements = document.getElementsByClassName('clock');
-	window.arrClocks = []
-	window.arrOffsets = [];
-	var j = 0;
-	for(var i = 0; i < clockElements.length; i++) {
-		el = clockElements[i];
-		timezone = parseInt(el.getAttribute('timezone'));
-		if (!isNaN(timezone)) {
-			var tzDifference = timezone * 60 + (new Date()).getTimezoneOffset();
-			var offset = tzDifference * 60 * 1000;
-			window.arrClocks.push(el);
-			window.arrOffsets.push(offset);
-		}
-	}
-	updateClocks();
-	clockID = setInterval(updateClocks, 1000);
-}
-setTimeout(startClocks, 100);
-</script>
+  <header>
+    <h1>Your Name</h1>
+    <div id="time"></div>
+  </header>
+
+  <nav>
+    <a href="about.html">About</a>
+    <a href="blog.html">Blog</a>
+    <a href="resume.html">Resume / CV</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <footer>
+    © <span id="year"></span> Your Name
+  </footer>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      document.getElementById('time').textContent = timeString;
+    }
+
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const toggleBtn = document.getElementById('toggle-theme');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light');
+    }
+  </script>
+
+</body>
+</html>
