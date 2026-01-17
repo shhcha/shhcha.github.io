@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Title</title>
+
+  <!-- Fragment Mono -->
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --text: #eaeaea;
+    }
+
+    body.light {
+      --bg: #ffffff;
+      --text: #0f0f0f;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Fragment Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page content starts here -->
+
+
+  <!-- Page content ends here -->
+
+</body>
+</html>
