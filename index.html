@@ -116,14 +116,13 @@
 
   <header>
     <h1>Aidan Murphy</h1>
-    <div id="time"></div>
   </header>
 
   <nav>
-    <a href="about.html">About</a>
-    <a href="blog.html">Blog</a>
-    <a href="resume.html">Resume / CV</a>
-    <a href="contact.html">Contact</a>
+    <a href="about.html">about</a>
+    <a href="blog.html">blog</a>
+    <a href="resume.html">resume</a>
+    <a href="contact.html">contact</a>
   </nav>
 
   <footer>
@@ -131,21 +130,6 @@
   </footer>
 
   <script>
-    function updateTime() {
-      const now = new Date();
-      const timeString = now.toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-      document.getElementById('time').textContent = timeString;
-    }
-
-    updateTime();
-    setInterval(updateTime, 1000);
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-
     const toggleBtn = document.getElementById('toggle-theme');
     toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('lightTheme');
