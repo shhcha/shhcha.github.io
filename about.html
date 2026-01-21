@@ -7,6 +7,9 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
 
+  <!-- APPLY THEME EARLY -->
+  <script src="theme.js"></script>
+
   <style>
     :root {
       --background: #0f0f0f;
@@ -15,31 +18,31 @@
       --accent: #ffffff;
     }
 
-    body.lightTheme {
+    /* 🔑 MATCH index.html — use html, not body */
+    html.lightTheme {
       --background: #ffffff;
       --text: #0f0f0f;
       --muted: #555555;
       --accent: #000000;
     }
 
-    body.darkTheme {
+    html.darkTheme {
       --background: #0f0f0f;
       --text: #eaeaea;
       --muted: #9a9a9a;
       --accent: #ffffff;
     }
-    
+
     body {
       margin: 0;
       font-family: 'Fragment Mono', monospace;
-      background-color: var(--bg);
+      background-color: var(--background); /* 🔧 FIXED */
       color: var(--text);
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color 0.15s ease, color 0.3s ease;
     }
 
     a {
@@ -55,9 +58,9 @@
       font-size: 0.75rem;
       color: var(--muted);
     }
-    
   </style>
 </head>
+
 <body>
 
   <header>

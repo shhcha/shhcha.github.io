@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aidan Murphy</title>
 
+  <!-- Apply saved theme BEFORE render -->
+  <script src="theme.js"></script>
+
   <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
 
   <style>
@@ -15,14 +18,14 @@
       --accent: #ffffff;
     }
 
-    body.lightTheme {
+    html.lightTheme {
       --background: #ffffff;
       --text: #0f0f0f;
       --muted: #555555;
       --accent: #000000;
     }
 
-    body.darkTheme {
+    html.darkTheme {
       --background: #0f0f0f;
       --text: #eaeaea;
       --muted: #9a9a9a;
@@ -36,14 +39,14 @@
     body {
       margin: 0;
       font-family: 'Fragment Mono', monospace;
-      background-color: var(--bg);
+      background-color: var(--background);
       color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color 0.15s ease, color 0.3s ease;
     }
 
     header {
@@ -55,11 +58,6 @@
       font-size: 2.5rem;
       margin: 0 0 0.5rem 0;
       font-weight: 400;
-    }
-
-    #time {
-      font-size: 0.95rem;
-      color: var(--muted);
     }
 
     nav {
@@ -128,19 +126,6 @@
   <footer>
     © <span id="year"></span> Aidan Murphy
   </footer>
-
-  <script>
-    const toggleBtn = document.getElementById('toggle-theme');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('lightTheme');
-      localStorage.setItem('theme', document.body.classList.contains('lightTheme') ? 'lightTheme' : 'darkTheme');
-    });
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'lightTheme') {
-      document.body.classList.add('lightTheme');
-    }
-  </script>
 
 </body>
 </html>
