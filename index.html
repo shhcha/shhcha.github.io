@@ -133,7 +133,7 @@
     const toggleBtn = document.getElementById('toggle-theme');
     toggleBtn.addEventListener('click', () => {
       document.body.classList.toggle('lightTheme');
-      localStorage.setItem('theme', document.body.classList.contains('lightTheme') ? 'lightTheme' : 'dark');
+      localStorage.setItem('theme', document.body.classList.contains('lightTheme') ? 'lightTheme' : 'darkTheme');
     });
 
     const savedTheme = localStorage.getItem('theme');
